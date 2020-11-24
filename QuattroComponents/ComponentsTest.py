@@ -1,5 +1,7 @@
 from collections import deque
-
+from QuattroComponents.Player import Player
+from QuattroComponents.Card import Card
+from QuattroComponents.View.EndOfGame import EndOfGame
 
 def deck_distribution_test(player1, player2, anonymous_player_list):
     zero_count = 0
@@ -72,4 +74,24 @@ def change_card_test(player_deck, an_deck):
         max_idx = sorted(max_idx, key=lambda x: x[1])
 
     print(f"change card is : {an_deck[max_idx[0]]}")
+
+
+def non_quattro_test():
+    player1 = Player(user_name="player1",
+                     user_deck=[
+                         Card(color="yellow", number=5, isOpen=False),
+                         Card(color="red", number=4, isOpen=False),
+                         Card(color="red", number=3, isOpen=False),
+                         Card(color="green", number=5, isOpen=False)
+                     ])
+
+    player2 = Player(user_name="player2",
+                     user_deck=[
+                         Card(color="blue", number=5, isOpen=False),
+                         Card(color="blue", number=4, isOpen=False),
+                         Card(color="blue", number=3, isOpen=False),
+                         Card(color="red", number=5, isOpen=False),
+                     ])
+
+    EndOfGame(surrender_flag=False, winner="", player1=player1, player2=player2)
 

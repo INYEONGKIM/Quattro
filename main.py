@@ -2,13 +2,12 @@ from QuattroComponents.Deck import Deck
 from QuattroComponents.Player import Player, Anonymous_player
 from QuattroComponents.Input_handler import user_input
 from QuattroComponents.View.EndOfGame import EndOfGame
+from QuattroComponents.View.MainGameView import MainGameView
 
-from QuattroComponents.ComponentsTest import deck_distribution_test
 
-
-def player_init(player, main_deck):
+def player_init(player: Player, main_deck: Deck):
     while True:
-        print(f"[System] Your Deck is \n{player}\n")
+        print(f"[System] {player.user_name}! Your Deck is \n{player}\n")
         player_input = user_input(now_turn=player, guide_msg="Please Input([o]kay, [m]alligan)")
 
         if len(player_input) == 1 and (player_input is 'o' or player_input is 'm'):
@@ -28,24 +27,6 @@ def player_init(player, main_deck):
         else:
             print("Try Again!")
 
-
-def print_anonymous_deck_info(anonymous_player_list):
-    s = ""
-    for an in anonymous_player_list:
-        s += f"{an.user_name}\t\t"
-    s += "\n"
-
-    for i in range(3):
-        for an in anonymous_player_list:
-            s += an.user_deck[i].__str__().strip() + "\t\t"
-        s += "\n"
-
-    for an in anonymous_player_list:
-        s += f"1: {an.player1_changed}, 2:{an.player2_changed}\t\t"
-    s += "\n"
-    print(s)
-
-
 def main():
     ### Deck and Players Init!
     main_deck = Deck()
@@ -62,8 +43,6 @@ def main():
     for i in range(1, 7):
         anonymous_player_list.append(Anonymous_player(user_name=f"anonymous{str(i)}",
                                                       user_deck=main_deck.draw_to_player(player_type="anonymous")))
-    # print_anonymous_deck_info(anonymous_player_list=anonymous_player_list)
-    # deck_distribution_test(player1=player1, player2=player2, anonymous_player_list=anonymous_player_list)
 
     ### Players Init Fin
 
@@ -79,12 +58,12 @@ def main():
             else:
                 now_player = player2
 
-            print(f"\n\n====== Round {turn_count + 1} : {now_player.user_name} =====\n\n")
+            print(f"\n\n[ Round {turn_count + 1}: {now_player.user_name} ]\n")
 
-            print("\n*** Before ***")
-            print(now_player, end="\n\n")
-            print_anonymous_deck_info(anonymous_player_list=anonymous_player_list)
-            print("\n\n")
+            MainGameView(player1=player1,
+                         player2=player2,
+                         anonymous_player_list=anonymous_player_list,
+                         now_turn=now_player.user_name)
 
             while True:
                 player_input = user_input(now_turn=now_player, guide_msg="Please Input([o]pen, [c]hange, [s]urrender)")
@@ -104,12 +83,10 @@ def main():
 
                 elif player_input == "c":
                     now_player.change_card(anonymous_player_list=anonymous_player_list)
-
-                    print("\n*** Change After ***")
-                    print(now_player, end="\n\n")
-                    print_anonymous_deck_info(anonymous_player_list=anonymous_player_list)
-
-                    print("\n\n====== Turn Change =====\n\n")
+                    MainGameView(player1=player1,
+                                 player2=player2,
+                                 anonymous_player_list=anonymous_player_list,
+                                 now_turn=now_player.user_name)
 
                 elif player_input == "s":
                     player_input = user_input(now_turn=now_player, guide_msg="Are you sure? [y]es")
@@ -124,38 +101,20 @@ def main():
                 else:
                     print("Try Again!")
 
-            if not surrender_flag:
-                print("\n*** After ***")
-                print(now_player, end="\n\n")
-                print_anonymous_deck_info(anonymous_player_list=anonymous_player_list)
-            else:
+            if surrender_flag:
                 print(f"{now_player.user_name} Resign!\n")
     ### Play Game
+
+    # Last Print
+    MainGameView(player1=player1,
+                 player2=player2,
+                 anonymous_player_list=anonymous_player_list,
+                 now_turn="END")
 
     ### Fin
     EndOfGame(surrender_flag=surrender_flag, winner=winner, player1=player1, player2=player2)
 
 
-def test():
-    from QuattroComponents.Card import Card
-    from QuattroComponents.ComponentsTest import change_card_test
-
-    player_deck = [
-        Card(color="red", number=3, isOpen=False),
-        Card(color="red", number=1, isOpen=True),
-        Card(color="green", number=4, isOpen=False),
-        Card(color="blue", number=3, isOpen=True)
-    ]
-
-    an_deck = [
-        Card(color="red", number=4, isOpen=False),
-        Card(color="green", number=2, isOpen=False),
-        Card(color="blue", number=5, isOpen=False)
-    ]
-
-    change_card_test(player_deck=player_deck, an_deck=an_deck)
-
 
 if __name__ == '__main__':
     main()
-    # test()

@@ -1,7 +1,7 @@
 class Card:
     card_type = ['red', 'blue', 'yellow', 'green', 'zero']
 
-    def __init__(self, color, number, isOpen):
+    def __init__(self, color: str, number: int, isOpen: bool):
         if 0 <= number <= 6 and color in self.card_type and isOpen in (True, False):
             self.color = color
             self.number = number

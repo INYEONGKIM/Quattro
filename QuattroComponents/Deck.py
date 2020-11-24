@@ -24,7 +24,7 @@ class Deck:
     def shuffle_deck(self):
         random.shuffle(self.deck)
 
-    def draw_to_player(self, player_type):
+    def draw_to_player(self, player_type: str):
         if len(self.deck) > 0:
             player_deck = []
             if player_type == "user":
@@ -40,7 +40,7 @@ class Deck:
         else:
             raise IndexError("QuattroComponents is Empty")
 
-    def handle_malligan(self, origin_deck):
+    def handle_malligan(self, origin_deck: deque):
         for od in origin_deck:
             self.deck.appendleft(od)
 

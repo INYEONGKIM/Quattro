@@ -1,9 +1,12 @@
 from QuattroComponents.Input_handler import user_input, select_number
+from QuattroComponents.Deck import Deck
+from QuattroComponents.Card import Card
+from QuattroComponents.View.CardInitView import CardInitView
 from collections import deque
 
 
 class Player:
-    def __init__(self, user_name, user_deck):
+    def __init__(self, user_name: str, user_deck: list):
         self.user_type = "user"
         self.user_name = user_name
         self.user_deck = user_deck # list
@@ -15,10 +18,7 @@ class Player:
         self.total_score = 0
 
     def __str__(self):
-        card_info = f"[{self.user_name}]\n"
-        for card in self.user_deck:
-            card_info += card.__str__() + "\n"
-        return card_info.strip()
+        return CardInitView(user_deck=self.user_deck)
 
     def open_card(self):
         opened_color = set()
@@ -48,7 +48,7 @@ class Player:
 
         return 0
 
-    def change_card(self, anonymous_player_list):
+    def change_card(self, anonymous_player_list: list):
         if len(self.user_change_quota) > 0:
             # Select Card Number
             while True:
@@ -85,7 +85,7 @@ class Player:
         else:
             print("[System] You have no chance to change!")
 
-    def do_malligan(self, main_deck):
+    def do_malligan(self, main_deck: Deck):
         if not self.user_malligan_fin_flag:
 
             # Do Malligan
@@ -132,7 +132,7 @@ class Player:
 
 
 class Anonymous_player:
-    def __init__(self, user_name, user_deck):
+    def __init__(self, user_name: str, user_deck: list):
         self.user_type = "anonymous"
         self.user_name = user_name
         self.user_deck = user_deck  # list
@@ -146,11 +146,10 @@ class Anonymous_player:
             card_info += card.__str__() + "\n"
         return card_info.strip()
 
-    def handle_card_change(self, user_name, origin_card, opened_deck):
+    def handle_card_change(self, user_name: str, origin_card: Card, opened_deck: deque):
 
         change_idx = -1
 
-        # TODO : change_idx Implementation
         # Rule 0: zero first!
         for i in range(3):
             if self.user_deck[i].color == 'zero':

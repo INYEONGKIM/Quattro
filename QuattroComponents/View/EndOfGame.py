@@ -1,5 +1,7 @@
+from QuattroComponents.Player import Player
 
-def EndOfGame(surrender_flag, winner, player1, player2):
+
+def EndOfGame(surrender_flag: bool, winner: str, player1: Player, player2: Player):
     ending_msg = ""
 
     if not surrender_flag:
@@ -38,10 +40,49 @@ def EndOfGame(surrender_flag, winner, player1, player2):
                 winner = player2.user_name
 
             else:
-                ending_msg += "Draw?\n"
+                p1_top_color = -1
+                p2_top_color = -1
 
-                # TODO : Make Draw Case
-                winner = "None"
+                ## Rating
+                ## Red: 4, Blue: 3, Yellow: 2, Green: 1
+
+                print(player1.top_card)
+
+                for p1_card in player1.user_deck:
+                    if p1_card.number == player1.top_card:
+                        if p1_card.color == "red":
+                            p1_top_color = 4
+
+                        elif p1_card.color == "blue" and p1_top_color < 4:
+                            p1_top_color = 3
+
+                        elif p1_card.color == "yellow" and p1_top_color < 3:
+                            p1_top_color = 2
+
+                        elif p1_card.color == "green" and p1_top_color < 2:
+                            p1_top_color = 1
+
+                for p2_card in player2.user_deck:
+                    if p2_card.number == player2.top_card:
+                        if p2_card.color == "red":
+                            p2_top_color = 4
+
+                        elif p2_card.color == "blue" and p2_top_color < 4:
+                            p2_top_color = 3
+
+                        elif p2_card.color == "yellow" and p2_top_color < 3:
+                            p2_top_color = 2
+
+                        elif p2_card.color == "green" and p2_top_color < 2:
+                            p2_top_color = 1
+
+                if p1_top_color > p2_top_color:
+                    winner = player1.user_name
+
+                elif p1_top_color < p2_top_color:
+                    winner = player2.user_name
+                else:
+                    winner = "None"
 
     ending_msg += f"Winner is {winner}"
 
