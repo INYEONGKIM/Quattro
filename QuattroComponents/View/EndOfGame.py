@@ -1,5 +1,5 @@
 from QuattroComponents.Player import Player
-
+from pyfiglet import Figlet
 
 def EndOfGame(surrender_flag: bool, winner: str, player1: Player, player2: Player):
     ending_msg = ""
@@ -86,5 +86,6 @@ def EndOfGame(surrender_flag: bool, winner: str, player1: Player, player2: Playe
 
     ending_msg += f"Winner is {winner}"
 
-    print(ending_msg)
+    f = Figlet(font="small").renderText("Game Over!")
+    print(f, ending_msg, sep='\n')
 

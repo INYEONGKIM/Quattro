@@ -30,3 +30,8 @@
     - 완전 초기 화면이랑 마무리만 생각해두기
     - python3.5 이상 조건 추가하기
     
+- 1.1: ASCII Art 추가
+    - WelcomeView 추가, EndOfGame 보완
+    - venv, requirements 추가
+     
+    

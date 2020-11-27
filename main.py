@@ -3,6 +3,7 @@ from QuattroComponents.Player import Player, Anonymous_player
 from QuattroComponents.Input_handler import user_input
 from QuattroComponents.View.EndOfGame import EndOfGame
 from QuattroComponents.View.MainGameView import MainGameView
+from QuattroComponents.View.WelcomeView import WelcomeView
 
 
 def player_init(player: Player, main_deck: Deck):
@@ -28,6 +29,9 @@ def player_init(player: Player, main_deck: Deck):
             print("Try Again!")
 
 def main():
+    ### Show Welcome View
+    WelcomeView()
+
     ### Deck and Players Init!
     main_deck = Deck()
     main_deck.shuffle_deck()
