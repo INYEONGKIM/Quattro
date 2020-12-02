@@ -90,3 +90,5 @@ def EndOfGame(surrender_flag: bool, winner: str, player1: Player, player2: Playe
     f = Figlet(font="small").renderText("Game Over!")
     print(f, ending_msg, sep='\n')
 
+    return winner
+

@@ -58,3 +58,6 @@ $ python3 ./TestModule/UnitTest.py
     - UserPlayerTest 추가
     - Anonymous Player Test Case, EndOFGame Test Case 추가 예정
     
+- 1.2.2: TDD Update2
+    - EndOfGame Test Case 추가
+    - Anonymous Player Test Case 추가

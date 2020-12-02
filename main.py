@@ -116,7 +116,7 @@ def main():
                  now_turn="END")
 
     ### Fin
-    EndOfGame(surrender_flag=surrender_flag, winner=winner, player1=player1, player2=player2)
+    _ = EndOfGame(surrender_flag=surrender_flag, winner=winner, player1=player1, player2=player2)
 
 
 
