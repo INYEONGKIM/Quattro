@@ -28,6 +28,11 @@ $ pip install requirements.txt
 $ python3 main.py
 ```
 
+## Execute Unit Test
+```
+$ python3 ./TestModule/UnitTest.py
+```
+
 ## Commit Log
 - 0.1: 게임 기본 사항 구현 완료
     - View 관련 부분 보완 필요:
@@ -47,4 +52,9 @@ $ python3 main.py
 - 1.2.0: TDD
     - DeckTest 추가
     - Player Test Case 추가 예정
+
+- 1.2.1: TDD Update
+    - UnitTest 통합 파일 추가 (모든 unittest.TestCase class 파일 일괄 실행)
+    - UserPlayerTest 추가
+    - Anonymous Player Test Case, EndOFGame Test Case 추가 예정
     

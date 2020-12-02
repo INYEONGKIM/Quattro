@@ -130,7 +130,6 @@ class Player:
                 self.total_score += card.number
 
 
-
 class Anonymous_player:
     def __init__(self, user_name: str, user_deck: list):
         self.user_type = "anonymous"

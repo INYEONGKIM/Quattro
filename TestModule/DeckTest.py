@@ -2,15 +2,19 @@ import unittest
 from QuattroComponents.Deck import Deck
 from QuattroComponents.Player import Player, Anonymous_player
 from collections import deque
+from TestModule.GetMethodName import get_method_name_decorator
 
 
 class DeckTest(unittest.TestCase):
 
     d = Deck()
+    method_names = set()
 
+    @get_method_name_decorator
     def test_deck_len(self):
         self.assertEqual(len(self.d.deck), 26)
 
+    @get_method_name_decorator
     def test_zero_count(self):
         zero_cnt = 0
         for card in self.d.deck:
@@ -19,6 +23,7 @@ class DeckTest(unittest.TestCase):
 
         self.assertEqual(zero_cnt, 2)
 
+    @get_method_name_decorator
     def test_deck_random_shuffle(self):
         last_card = self.d.deck[-1]
 
@@ -27,6 +32,7 @@ class DeckTest(unittest.TestCase):
             self.assertNotEqual(last_card, self.d.deck[-1])
             last_card = self.d.deck[-1]
 
+    @get_method_name_decorator
     def test_is_original_deck(self):
         test_deck = set()
         zero_cnt = 0
@@ -42,6 +48,7 @@ class DeckTest(unittest.TestCase):
         self.assertEqual(zero_cnt, 2)
         self.assertEqual(len(test_deck) + zero_cnt - 1, 26)
 
+    @get_method_name_decorator
     def test_handling_malligan(self):
         mall_deck = Deck()
         mall_deck.shuffle_deck()
@@ -57,6 +64,7 @@ class DeckTest(unittest.TestCase):
             self.assertEqual(first_card_deck[i], mall_deck.deck[3 - i])
             self.assertEqual(after_malligan_deck[i], last_card_deck[i])
 
+    @get_method_name_decorator
     def test_deck_distribution(self):
         main_deck = Deck()
         main_deck.shuffle_deck()

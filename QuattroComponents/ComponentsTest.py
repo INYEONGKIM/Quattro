@@ -3,6 +3,7 @@ from QuattroComponents.Player import Player
 from QuattroComponents.Card import Card
 from QuattroComponents.View.EndOfGame import EndOfGame
 
+
 def deck_distribution_test(player1, player2, anonymous_player_list):
     zero_count = 0
     test_deck = set()
