@@ -61,3 +61,6 @@ $ python3 ./TestModule/UnitTest.py
 - 1.2.2: TDD Update2
     - EndOfGame Test Case 추가
     - Anonymous Player Test Case 추가
+    
+- 1.2.3: minor
+    - remove ComponentsTest.py
