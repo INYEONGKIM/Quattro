@@ -1,6 +1,7 @@
 from QuattroComponents.Player import Player
 from pyfiglet import Figlet
 
+
 def EndOfGame(surrender_flag: bool, winner: str, player1: Player, player2: Player):
     ending_msg = ""
 

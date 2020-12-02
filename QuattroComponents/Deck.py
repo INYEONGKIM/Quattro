@@ -1,17 +1,17 @@
 from collections import deque
 import random
-from QuattroComponents import Card as c
+from QuattroComponents.Card import Card
 
 
 class Deck:
     def __init__(self):
         # 2 Zero + (1 ~ 6) x 4
-        self.deck = deque([c.Card(color='zero', number=0, isOpen=False),
-                           c.Card(color='zero', number=0, isOpen=False)])
+        self.deck = deque([Card(color='zero', number=0, isOpen=False),
+                           Card(color='zero', number=0, isOpen=False)])
 
         for col in ['red', 'blue', 'yellow', 'green']:
             for n in range(1, 7):
-                self.deck.append(c.Card(color=col, number=n, isOpen=False))
+                self.deck.append(Card(color=col, number=n, isOpen=False))
 
     def __str__(self):
         s = "***** Print Now Deck *****\n"

@@ -18,6 +18,16 @@
 - 두 플레이어 모두 콰트로 완성 시 숫자 합이 더 큰 플레이어가 승리
 - 두 플레이어 모두 콰트로 미완성시 가장 큰 숫자를 보유한 플레이어가 승리
 
+## Build
+```
+$ pip install requirements.txt
+```
+
+## Execute
+```
+$ python3 main.py
+```
+
 ## Commit Log
 - 0.1: 게임 기본 사항 구현 완료
     - View 관련 부분 보완 필요:
@@ -34,4 +44,7 @@
     - WelcomeView 추가, EndOfGame 보완
     - venv, requirements 추가
      
+- 1.2.0: TDD
+    - DeckTest 추가
+    - Player Test Case 추가 예정
     
